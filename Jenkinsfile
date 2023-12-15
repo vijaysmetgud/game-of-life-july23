@@ -7,7 +7,7 @@ pipeline{
         triggers{
             pollSCM('* * * * *')
         }
-        tool{
+        tools {
             jdk 'JDK_8'
         }
         stages{
