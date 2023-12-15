@@ -10,6 +10,11 @@ pipeline {
         tools {
             jdk 'JAVA_8'
         }
+        parameters {
+            choice(name: 'GOAL', choices:['package','clean package','validate','install'], 
+            description: 'This is maven goal')
+
+        }
         stages{
             stage('VCS'){
                 steps{
@@ -19,7 +24,7 @@ pipeline {
             }
             stage('build and package'){
                 steps{
-                    sh script: 'mvn clean package'
+                    sh script: "mvn ${params.GOAL}"
                 }
             }
             stage('archieve and publish junittest results'){
