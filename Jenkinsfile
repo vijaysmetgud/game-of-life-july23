@@ -1,4 +1,4 @@
-pipeline{
+pipeline {
     agent {label ' JDK_8'}
     options{
         retry(3)
@@ -29,5 +29,25 @@ pipeline{
                 }
               
             }
+           
+        }
+
+        post {
+            success {
+                mail subject: 'your build is success',
+                     body: 'Hi this jenkins job',
+                     cc: 'ajaykumar.matters@gmail', 
+                     from: 'info@test.com',
+                     to: 'admin@jenkins.com'
+            }
+            
+            failure {
+                mail subject: 'your build is failed',
+                     body: 'Hi this jenkins job',
+                     cc: 'ajaykumar.matters@gmail', 
+                     from: 'info@test.com',
+                     to: 'admin@jenkins.com' 
+            }
         }
 }
+
