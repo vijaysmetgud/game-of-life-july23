@@ -34,16 +34,16 @@ pipeline {
 
         post {
             success {
-                mail subject: 'your build is success',
-                     body: 'Hi this jenkins job',
+                mail subject: "${JOB_NAME}:has completed with success",
+                     body: "Hi this jenkins job \n Build Url ${BUILD_URL}",
                      cc: 'ajaykumar.matters@gmail', 
                      from: 'info@test.com',
                      to: 'admin@jenkins.com'
             }
             
             failure {
-                mail subject: 'your build is failed',
-                     body: 'Hi this jenkins job',
+                mail subject: "${JOB_NAME}:has completed with success",
+                     body: "Hi this jenkins job \n Build Url ${BUILD_URL}",
                      cc: 'ajaykumar.matters@gmail', 
                      from: 'info@test.com',
                      to: 'admin@jenkins.com' 
