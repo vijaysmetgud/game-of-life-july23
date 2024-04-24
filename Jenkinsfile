@@ -1,5 +1,5 @@
 pipeline {
-    agent {label ' JDK_8'}
+    agent {label 'JDK_8'}
     options{
         retry(3)
         timeout(time: 1, unit: 'MINUTES')
@@ -33,5 +33,6 @@ pipeline {
                     junit testResults: '**/surefire-reports/TEST-*.xml' 
                 }
 
- }
+             }
 
+        }
