@@ -1,9 +1,13 @@
 pipeline {
     agent {label ' JDK_8'}
-    
+    options{
+        retry(3)
+        timeout(time: 1, unit: 'MINUTES')
     }
-       
- tools {
+        triggers{
+            pollSCM('* * * * *')
+        }
+        tools {
             jdk 'JAVA_8'
         }
         parameters {
@@ -27,7 +31,12 @@ pipeline {
                 steps{
                     archiveArtifacts artifacts: '**/target/gameoflife.war'
                     junit testResults: '**/surefire-reports/TEST-*.xml' 
-                }            }
+                }
+              
+            }
+           
+        }
+
+
         }
 }
-
