@@ -1,13 +1,9 @@
 pipeline {
     agent {label ' JDK_8'}
-    options{
-        retry(3)
-        timeout(time: 1, unit: 'MINUTES')
+    
     }
-        triggers{
-            pollSCM('* * * * *')
-        }
-        tools {
+       
+ tools {
             jdk 'JAVA_8'
         }
         parameters {
@@ -31,28 +27,7 @@ pipeline {
                 steps{
                     archiveArtifacts artifacts: '**/target/gameoflife.war'
                     junit testResults: '**/surefire-reports/TEST-*.xml' 
-                }
-              
-            }
-           
-        }
-
-        post {
-            success {
-                mail subject: "${JOB_NAME}:has completed with success",
-                     body: "Hi this jenkins job \n Build Url ${BUILD_URL}",
-                     cc: 'ajaykumar.matters@gmail', 
-                     from: 'info@test.com',
-                     to: 'admin@jenkins.com'
-            }
-            
-            failure {
-                mail subject: "${JOB_NAME}:has completed with success",
-                     body: "Hi this jenkins job \n Build Url ${BUILD_URL}",
-                     cc: 'ajaykumar.matters@gmail', 
-                     from: 'info@test.com',
-                     to: 'admin@jenkins.com' 
-            }
+                }            }
         }
 }
 
