@@ -17,7 +17,9 @@ stages:
   jobs:
   - job: Build
     displayName: Build
-    pool: default
+    pool: 
+      name: Azure Pipelines
+      vmImage: ubuntu-22.04
       
     steps:
     - task: Docker@2
